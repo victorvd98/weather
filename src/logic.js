@@ -11,4 +11,3 @@ async function getWeather() {
 };
 
 getWeather();
-
