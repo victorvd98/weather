@@ -142,7 +142,7 @@ async function getWeather() {
         const response = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London/2025-07-29?key=KBUSYKHPRM4GSTDU75CQM6LCB');
         const data = await response.json();
         console.log(data);
-        console.log(data.latitude);
+        console.log(data.address);
         return data;
     } catch (err) {
         console.log('error!');
