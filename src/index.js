@@ -1,5 +1,4 @@
 //import styles
 import './styles.css';
 
-
-console.log('hello world!');
+const form = document.getElementById('form');

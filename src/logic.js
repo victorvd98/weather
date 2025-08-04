@@ -137,31 +137,30 @@
 //   }
 // }
 
-//import date-fns from node_modules to work with dates
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
-// fetch info from API
 async function getWeather() {
-    try {
-        const today = format(new Date(), 'yyy-MM-dd');
-        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
+  try {
+    const today = format(new Date(), "yyy-MM-dd");
+    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
 
-        const response = await fetch(url);
-        const data = await response.json(); //turns the contents of the response into a usable object
-        
-        const selectData = {
-            location: data.address,
-            temp: data.currentConditions.temp,
-            feelsLike: data.currentConditions.feelslike,
-            icon: data.currentConditions.icon,
-        };
-        console.log(selectData);
-        return selectData;
-    } catch (err) {
-        console.log(data);
-        console.log('There was an error retrieving data from the weather API!');
-        console.error(err);
-    }
-};
+    const response = await fetch(url);
+    const data = await response.json(); //turns the contents of the response into a usable object
 
-getWeather(); //retrieves response from API and returns response.json()
+    const selectData = {
+      location: data.address,
+      temp: data.currentConditions.temp,
+      feelsLike: data.currentConditions.feelslike,
+      icon: data.currentConditions.icon,
+    };
+
+    console.log(selectData);
+    return selectData;
+  } catch (err) {
+    console.log(data);
+    console.log("There was an error retrieving data from the weather API!");
+    console.error(err);
+  }
+}
+
+getWeather();
