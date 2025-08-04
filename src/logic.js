@@ -139,27 +139,33 @@
 
 import { format } from "date-fns";
 
-async function getWeather() {
-  try {
-    const today = format(new Date(), "yyy-MM-dd");
-    const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
+class List {
+  constructor() {
+    this.list = [];
+  }
 
-    const response = await fetch(url);
-    const data = await response.json(); //turns the contents of the response into a usable object
+  async getWeather(place) {
+    try {
+      const today = format(new Date(), "yyy-MM-dd");
+      const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
 
-    const selectData = {
-      location: data.address,
-      temp: data.currentConditions.temp,
-      feelsLike: data.currentConditions.feelslike,
-      icon: data.currentConditions.icon,
-    };
+      const response = await fetch(url);
+      const data = await response.json(); //turns the contents of the response into a usable object
 
-    console.log(selectData);
-    return selectData;
-  } catch (err) {
-    console.log(data);
-    console.log("There was an error retrieving data from the weather API!");
-    console.error(err);
+      const selectData = {
+        location: data.address,
+        temp: data.currentConditions.temp,
+        feelsLike: data.currentConditions.feelslike,
+        icon: data.currentConditions.icon,
+      };
+
+      this.list.push(selectData);
+      return selectData;
+
+    } catch (err) {
+      console.log("There was an error retrieving data from the weather API!");
+      console.error(err);
+    }
   }
 }
 
