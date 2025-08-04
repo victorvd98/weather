@@ -1,4 +1,5 @@
 // API RESPONSE FORMAT
+// this is an example response
 
 // {
 //   queryCost: 1,
@@ -136,17 +137,31 @@
 //   }
 // }
 
+//import date-fns from node_modules to work with dates
+import { format } from 'date-fns';
+
 // fetch info from API
 async function getWeather() {
     try {
-        const response = await fetch('https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London/2025-07-29?key=KBUSYKHPRM4GSTDU75CQM6LCB');
-        const data = await response.json();
-        console.log(data);
-        console.log(data.address);
-        return data;
+        const today = format(new Date(), 'yyy-MM-dd');
+        const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/London/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
+
+        const response = await fetch(url);
+        const data = await response.json(); //turns the contents of the response into a usable object
+        
+        const selectData = {
+            location: data.address,
+            temp: data.currentConditions.temp,
+            feelsLike: data.currentConditions.feelslike,
+            icon: data.currentConditions.icon,
+        };
+        console.log(selectData);
+        return selectData;
     } catch (err) {
-        console.log('error!');
+        console.log(data);
+        console.log('There was an error retrieving data from the weather API!');
+        console.error(err);
     }
 };
 
-getWeather();
+getWeather(); //retrieves response from API and returns response.json()
