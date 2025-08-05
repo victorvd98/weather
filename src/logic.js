@@ -151,7 +151,7 @@ class Display {
 
   async fetchWeather(place) {
     try {
-      const today = format(new Date(), "yyy-MM-dd");
+      const today = format(new Date(), "yyyy-MM-dd");
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
 
       const response = await fetch(url);
@@ -161,7 +161,7 @@ class Display {
       this.selectData.temp = data.currentConditions.temp;
       this.selectData.feelsLike = data.currentConditions.feelslike;
       this.selectData.icon = data.currentConditions.icon;
-        console.log(this.selectData);
+
       return this.selectData;
 
     } catch (err) {
@@ -171,6 +171,4 @@ class Display {
   }
 }
 
-const display = new Display();
-display.fetchWeather('Brussels');
 //export const display = new Display();
