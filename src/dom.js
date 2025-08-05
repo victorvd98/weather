@@ -1,4 +1,4 @@
-import { getWeather } from "./logic.js";
+import { list } from "./logic.js";
 
 const display = document.querySelector('display');
 

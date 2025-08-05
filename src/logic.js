@@ -144,7 +144,7 @@ class List {
     this.list = [];
   }
 
-  async getWeather(place) {
+  async fetchWeather(place) {
     try {
       const today = format(new Date(), "yyy-MM-dd");
       const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${place}/${today}?key=KBUSYKHPRM4GSTDU75CQM6LCB`;
@@ -169,4 +169,4 @@ class List {
   }
 }
 
-getWeather();
+export const list = new List();
