@@ -9,5 +9,5 @@ form.addEventListener('submit', (e) => {
 
     const location = place.value.trim(); //get rid of any unnecessary spaces
 
-    
+    //execution
 })

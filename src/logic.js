@@ -161,9 +161,9 @@ class Display {
       this.selectData.temp = data.currentConditions.temp;
       this.selectData.feelsLike = data.currentConditions.feelslike;
       this.selectData.icon = data.currentConditions.icon;
-
+        console.log(this.selectData);
       return this.selectData;
-      
+
     } catch (err) {
       console.log("There was an error retrieving data from the weather API!");
       console.error(err);
@@ -171,4 +171,6 @@ class Display {
   }
 }
 
-export const display = new Display();
+const display = new Display();
+display.fetchWeather('Brussels');
+//export const display = new Display();
