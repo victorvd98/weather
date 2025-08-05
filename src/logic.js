@@ -139,9 +139,14 @@
 
 import { format } from "date-fns";
 
-class List {
+class Display {
   constructor() {
-    this.list = [];
+    this.selectData = {
+        location: null,
+        temp: null,
+        feelsLike: null,
+        icon: null,
+    };
   }
 
   async fetchWeather(place) {
@@ -152,16 +157,13 @@ class List {
       const response = await fetch(url);
       const data = await response.json(); //turns the contents of the response into a usable object
 
-      const selectData = {
-        location: data.address,
-        temp: data.currentConditions.temp,
-        feelsLike: data.currentConditions.feelslike,
-        icon: data.currentConditions.icon,
-      };
+      this.selectData.location = data.address;
+      this.selectData.temp = data.currentConditions.temp;
+      this.selectData.feelsLike = data.currentConditions.feelslike;
+      this.selectData.icon = data.currentConditions.icon;
 
-      this.list.push(selectData);
-      return selectData;
-
+      return this.selectData;
+      
     } catch (err) {
       console.log("There was an error retrieving data from the weather API!");
       console.error(err);
@@ -169,4 +171,4 @@ class List {
   }
 }
 
-export const list = new List();
+export const display = new Display();
