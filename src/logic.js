@@ -171,4 +171,4 @@ class Display {
   }
 }
 
-//export const display = new Display();
+export const display = new Display();

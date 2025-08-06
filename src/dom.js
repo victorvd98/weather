@@ -1,7 +1,7 @@
 import { list } from "./logic.js";
 
-const display = document.querySelector('display');
+export function renderWeather(place) {
+    const display = document.querySelector('display');
 
-function renderWeather(place) {
-    //TBE (dom manipulation)
+    //execution
 }
